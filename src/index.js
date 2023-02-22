@@ -1,17 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import "@/assets/css/index.less";
+import "normalize.css";
+import { HashRouter } from "react-router-dom";
+import { ConfigProvider } from "antd";
+import "antd/dist/reset.css";
+// import 'antd/dist/reset.less';
+// import 'antd/dist/antd.less';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from "./App";
+import { Provider } from "react-redux";
+import store from "./store";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <HashRouter>
+    <Suspense>
+      <Provider store={store}>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#00b96b",
+            },
+          }}
+        >
+          <App />
+        </ConfigProvider>
+      </Provider>
+    </Suspense>
+  </HashRouter>
+  // </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
