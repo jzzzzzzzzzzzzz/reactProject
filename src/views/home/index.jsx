@@ -12,9 +12,11 @@ import HomeBanner from "./homechild/HomeBanner";
 import HomeContent from "./homechild/HomeContent";
 import { HomeWrapper } from "./style";
 import classNames from 'classnames'
+import HomeItem from "./homechild/HomeItem";
 
 
 const Home = memo(() => {
+  let [itemList,setItemList] = useState([])
   const dispatch = useDispatch();
   let { goodPriceInfo,goodHighScore,goodDiscount } = useSelector((state) => ({
     goodPriceInfo: state.home.goodPriceInfo,
@@ -30,10 +32,16 @@ const Home = memo(() => {
 
   console.log(goodPriceInfo,goodHighScore,goodDiscount);
   let discountlist = goodDiscount.dest_list?goodDiscount.dest_list:{}
-
+  function itemClick(type) {
+    console.log('====================================');
+    console.log(type,999999999);
+    console.log(goodDiscount.dest_list[type],616161661);
+    setItemList(goodDiscount.dest_list[type])
+    console.log('====================================');
+  }
 
   const tabNames = goodDiscount.dest_address?.map(item=>item.name)
-  console.log(tabNames);
+  console.log(goodDiscount,666666666);
   return (
     <HomeWrapper>
       <HomeBanner></HomeBanner>
@@ -42,12 +50,8 @@ const Home = memo(() => {
           title={goodDiscount.title}
           subtitle={goodDiscount.subtitle}
         ></SectionHeader>
-        <SectionTab tabNames={tabNames}></SectionTab>
-        <div className="itemBox">
-          {Object.keys(discountlist).length&&discountlist["佛山"].slice(0,8).map((item) => (
-            <RoomItem width="33%" key={item.id} name={item.name} items={item}></RoomItem>
-          ))}
-        </div>
+        <SectionTab tabNames={tabNames} itemClick={itemClick}></SectionTab>
+        <HomeItem discountlist={itemList}></HomeItem>
       </div>
       <HomeContent  width="25%"  goodHighScore = {goodPriceInfo}></HomeContent>
       <HomeContent  width="25%"  goodHighScore = {goodHighScore}></HomeContent>

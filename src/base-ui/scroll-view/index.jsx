@@ -5,11 +5,15 @@ import { useRef } from 'react'
 import { ViewWrapper } from './style'
 
 const ScrollView = memo((props) => {
-  /** 定义内部的状态 */
-  const [showLeft, setShowLeft] = useState(false)
-  const [showRight, setShowRight] = useState(false)
-  const [posIndex, setPosIndex] = useState(0)
-  const totalDistanceRef = useRef()
+    /** 定义内部的状态 */
+    const [showLeft, setShowLeft] = useState(false)
+    const [showRight, setShowRight] = useState(false)
+    const [posIndex, setPosIndex] = useState(0)
+    const totalDistanceRef = useRef()
+  console.log('====================================');
+  console.log(props.children,33333333333333);
+  console.log('====================================');
+
 
   /** 组件渲染完毕, 判断是否显示右侧的按钮 */
   const scrollContentRef = useRef()
@@ -35,18 +39,19 @@ const ScrollView = memo((props) => {
 
   return (
     <ViewWrapper>
-      { showLeft && (
+      {showLeft&&(
         <div className='control left' onClick={e => controlClickHandle(false)}>
           <IconArrowLeft/>
         </div>
       ) }
-      { showRight && (
+      {showRight&&(
         <div className='control right' onClick={e => controlClickHandle(true)}>
           <IconArrowRight/>
         </div>
       ) }
 
-      <div className='scroll'>
+
+       <div className='scroll'>
         <div className='scroll-content' ref={scrollContentRef}>
           {props.children}
         </div>
