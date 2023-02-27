@@ -18,7 +18,7 @@ const SectionTab = memo((props) => {
     setIsActive(num)
     props.itemClick(item)
   }
-  return <SectionTabWrapper>
+  return <SectionTabWrapper className="tab">
     <ScrollView>
     {tabNames.map((item,index)=>(
       <div className={['item',isActive == index?'active':''].join(' ')} key={index} onClick={e=>changeIndex(index,item)}>

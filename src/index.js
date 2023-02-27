@@ -11,7 +11,9 @@ import "antd/dist/reset.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import store from "./store";
+import { getHomeLongFor } from "./service/modules/home";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+getHomeLongFor()
 root.render(
   // <React.StrictMode>
   <HashRouter>

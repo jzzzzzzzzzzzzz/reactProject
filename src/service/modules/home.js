@@ -17,3 +17,14 @@ export function getHomeDiscount() {
         url:"/home/discount"
     })
 }
+
+export function getHomeLongFor() {
+    return hyRequest.get({
+        url:"/home/longfor"
+    })
+}
+export function getHomePlusData() {
+    return hyRequest.get({
+        url:"/home/plus"
+    })
+}

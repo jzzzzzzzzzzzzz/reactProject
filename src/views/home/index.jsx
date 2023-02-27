@@ -13,6 +13,9 @@ import HomeContent from "./homechild/HomeContent";
 import { HomeWrapper } from "./style";
 import classNames from 'classnames'
 import HomeItem from "./homechild/HomeItem";
+import HomeV3 from "./homechild/HomeV3";
+import HomeV4 from "./homechild/HomeV4";
+import SectionFooter from "@/components/section-footer";
 
 
 const Home = memo(() => {
@@ -52,9 +55,13 @@ const Home = memo(() => {
         ></SectionHeader>
         <SectionTab tabNames={tabNames} itemClick={itemClick}></SectionTab>
         <HomeItem discountlist={itemList}></HomeItem>
+        <SectionFooter></SectionFooter>
+
+      <HomeV3></HomeV3>
       </div>
       <HomeContent  width="25%"  goodHighScore = {goodPriceInfo}></HomeContent>
       <HomeContent  width="25%"  goodHighScore = {goodHighScore}></HomeContent>
+      <HomeV4></HomeV4>
     </HomeWrapper>
   );
 });

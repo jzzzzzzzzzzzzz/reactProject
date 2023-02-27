@@ -1,4 +1,4 @@
-import { getHomeDataPrice, getHomeDiscount, getHomeHighScore } from '@/service/modules/home'
+import { getHomeDataPrice, getHomeDiscount, getHomeHighScore, getHomeLongFor, getHomePlusData } from '@/service/modules/home'
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 
 export const getHomeData = createAsyncThunk('getHomeData',(payload,{dispatch})=> {
@@ -10,6 +10,14 @@ export const getHomeData = createAsyncThunk('getHomeData',(payload,{dispatch})=>
     })
     getHomeDiscount().then(res=>{
         dispatch(homeSlice.actions.getGoodDiscountInfo(res))
+    })
+    getHomeLongFor().then(res=>{
+        // console.log('ddddddddddd',res);
+        dispatch(homeSlice.actions.getGoodLongfor(res))
+    })
+    getHomePlusData().then(res=>{
+        console.log('ddddddddddd',res);
+        dispatch(homeSlice.actions.getGoodPlusData(res))
     })
     // console.log(data);
     // let data1 = await getHomeHighScore()
@@ -32,7 +40,13 @@ const homeSlice = createSlice({
         },
         getGoodDiscountInfo:{
 
-        }
+        },
+        getHomeLongfor:{
+
+        },
+        getHomePlusdata:{
+
+        },
     },
     reducers:{
         getGoodPriceInfo(state,{payload}) {
@@ -43,6 +57,12 @@ const homeSlice = createSlice({
         },
         getGoodDiscountInfo(state,{payload}) {
             state.getGoodDiscountInfo = payload
+        },
+        getGoodLongfor(state,{payload}) {
+            state.getHomeLongfor = payload
+        },
+        getGoodPlusData(state,{payload}) {
+            state.getHomePlusdata = payload
         },
         
     },
